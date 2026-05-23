@@ -1,2 +1,11 @@
-
-
+collection_name: robo_care.db
+embedding_function:
+persist_directory: chroma_db
+k: 3
+data_path: data
+md5_hex_store: md5.text
+allow_knowledge_file_type: [ 'txt','pdf' ]
+chunk_size: 200
+chunk_overlap: 20 # 连续分片之间重复的最大字符数
+separators: [ '\n\n','\n',',','!','?',' ','','.','。' ]
+password: itheima

@@ -3,7 +3,6 @@ import os.path
 
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_core.documents import Document
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from utils.logger_handler import logger
 
@@ -16,7 +15,6 @@ def get_file_md5_hex(file_path) -> str:
     """
     if not os.path.exists(file_path):
         logger.error(f"文件{file_path}的md5计算失败，文件不存在！")
-        return
     if not os.path.isfile(file_path):
         logger.error(f"{file_path} 不是文件类型！")
 
@@ -54,17 +52,10 @@ def list_dir_with_allowed_type(path: str, allowed_types: tuple[str]) -> tuple[st
 
 def pdf_loader(file_path: str, password: str) -> list[Document]:
     return PyPDFLoader(
-        file_path,
-        password=password,
+        file_path
+        # password=password,
     ).load()
 
 
 def text_loader(file_path: str) -> list[Document]:
-    document = TextLoader(file_path).load()
-    spliter = RecursiveCharacterTextSplitter(
-        chunk_size=500,
-        chunk_overlap=50,
-        separators=['\n\n', '\n', '!', '?', ',', ' ', '', '  '],
-        length_function=len
-    )
-    return spliter.split_documents(document)
+    return TextLoader(file_path,encoding='utf-8').load()

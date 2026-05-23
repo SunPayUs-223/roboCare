@@ -59,7 +59,7 @@ chroma_conf = load_chroma_config()
 prompt_conf = load_prompt_config()
 
 if __name__ == '__main__':
-    print(rag_conf["chat_model_name"])
+    print(rag_conf['chat_model_name'])
     print(rag_conf["embedding_model_name"])
     print(prompt_conf["report_prompt_path"])
     print(prompt_conf["main_prompt_path"])
