@@ -48,7 +48,6 @@ def load_prompt_config(config_path: str = get_absolute_path("config/prompt.yml")
     :param encoding:
     :return:
     """
-    logger.info(f"config_path:{config_path}")
     with open(config_path, "r", encoding=encoding) as file:
         return yaml.load(file, Loader=yaml.FullLoader)
 

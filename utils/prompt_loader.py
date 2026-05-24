@@ -6,9 +6,7 @@ from utils.path_tool import get_absolute_path
 def load_system_prompt():
     try:
         main_prompt = prompt_conf["main_prompt_path"]
-        logger.info(f"main_prompt_path:{main_prompt}")
         absolute_path = get_absolute_path(main_prompt)
-        logger.info(f"absolute_path:{absolute_path}")
     except KeyError as e:
         logger.error(f"yaml中没有key：main_prompt_path")
         raise e

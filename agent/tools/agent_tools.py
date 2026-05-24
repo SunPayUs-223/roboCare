@@ -27,7 +27,7 @@ def get_weather(city: str) -> str:
 
 
 @tool(description="获取用户所在城市工具")
-def get_user_city() -> str:
+def get_user_location() -> str:
     return random.choice(['深圳', '广州', '上海'])
 
 
@@ -81,13 +81,18 @@ def generate_external_data():
 
 
 @tool(description="从外部系统中获取用户的使用记录，返回字符串")
-def fetch_records_from_external(user_id, month) -> str:
+def fetch_external_data(user_id, month) -> str:
     generate_external_data()
     try:
         return external_data[user_id][month]
     except KeyError as e:
-        logger.warning(f"{fetch_records_from_external}没有检索到用户:{user_id}在{month}的使用记录数据")
+        logger.warning(f"[fetch_external_data]没有检索到用户:{user_id}在{month}的使用记录数据")
         return ""
+
+
+@tool(description="调用后出发中间件自动为报告生成的场景动态注入上下文信息")
+def fill_context_for_report():
+    return "fill_context_for_report"
 
 
 if __name__ == '__main__':

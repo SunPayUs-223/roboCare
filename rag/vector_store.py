@@ -19,7 +19,6 @@ class VectorStoreService:
             embedding_function=embedding_model,
             persist_directory=chroma_conf['persist_directory']
         )
-        logger.info("向量存储Chroma初始化成功")
         self.splitter = RecursiveCharacterTextSplitter(
             chunk_size=chroma_conf['chunk_size'],
             chunk_overlap=chroma_conf['chunk_overlap'],
